@@ -10,4 +10,4 @@ steps:
     command: |
       curl -X POST -H 'Content-type: application/json' --data '{
         "text": "🚀 Build Successful! Your Flask app is deployed."
-      }' https://hooks.slack.com/services/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
+      }' https://hooks.slack.com/services/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
