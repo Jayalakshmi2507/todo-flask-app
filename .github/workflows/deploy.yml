@@ -20,4 +20,5 @@ jobs:
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
             "text": "Build completed successfully!"
-          }' https://hooks.slack.com/services/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
+          }' com/services/T08S14944D7/B08RSNW690A/k9UG6HW6e3RcunINfW3IML0h
+
