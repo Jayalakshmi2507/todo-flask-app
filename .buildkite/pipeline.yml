@@ -1,0 +1,13 @@
+steps:
+  - label: "Run Tests"
+    command: "docker run todo-app pytest"
+
+  - label: "Deploy to Local Docker"
+    command: |
+      docker-compose up -d
+  
+  - label: "Notify Slack"
+    command: |
+      curl -X POST -H 'Content-type: application/json' --data '{
+        "text": "🚀 Build Successful! Your Flask app is deployed."
+      }' https://hooks.slack.com/services/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

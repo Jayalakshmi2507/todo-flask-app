@@ -35,3 +35,41 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore Python virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# Ignore Terraform files (since you faced issues in the past)
+*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars
+
+# Ignore logs and system files
+*.log
+.DS_Store
+
+# Ignore Docker cache and large files
+*.tar.gz
+*.img
+*.container
+.dockerignore
+
+# Ignore Buildkite cache files
+.buildkite/cache/
+
+# Ignore Node modules (if you add front-end integrations)
+node_modules/
+
+# Ignore environment configuration files
+.env
+secrets.json
+config.yaml
+
+# Ignore GitHub Actions workflow runtime files
+.github/workflows/temp/
+
+# Ignore Slack API credentials (if stored locally)
+slack_webhook_url.txt

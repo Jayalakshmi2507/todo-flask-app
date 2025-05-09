@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        run: |
+          docker-compose up --build
+          
+      - name: Notify Slack
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "Build completed successfully!"
+          }' https://hooks.slack.com/services/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
