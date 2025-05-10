@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main  # Runs when code is pushed to main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,13 +14,13 @@ jobs:
       - name: Fix package conflicts & install Docker Compose
         run: |
           sudo apt-get update
-          sudo apt-get upgrade -y
+          sudo apt-get remove -y containerd
           sudo apt-get install -f  # Fix broken dependencies
           sudo dpkg --configure -a  # Configure any uninstalled packages
           sudo apt-get autoremove -y  # Remove unnecessary packages
           sudo apt-get clean  # Clean cache files
-
-          # Install Docker
+          
+          # Install Docker (without conflicting containerd package)
           sudo apt-get install -y docker.io
 
           # Install Docker Compose
