@@ -12,13 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Docker
+      - name: Install Docker & Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version  # Verify installation
+
+      - name: Run Docker Compose
         run: |
           docker-compose up --build
-          
       - name: Notify Slack
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "Build completed successfully!"
-          }' com/services/T08S14944D7/B08RSNW690A/k9UG6HW6e3RcunINfW3IML0h
-
+             curl -X POST -H 'Content-type: application/json' --data '{"text": "Test webhook notification from CI/CD"}' https://hooks.slack.com/services/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

@@ -9,4 +9,4 @@ steps:
   - label: "Notify Slack"
     command: |
       curl -X POST -H 'Content-type: application/json' --data '{
-        "text": "🚀 Build Successful! Your Flask app is deployed."}' https://hooks.slack.com/services/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
+        "text": "🚀 Build Successful! Your Flask app is deployed."}' https://hooks.slack.com/services/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
