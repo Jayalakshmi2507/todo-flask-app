@@ -12,6 +12,7 @@ def add_task():
     task = request.form.get('task')
     if task:
         tasks.append(task)
+         print ("Hello")
     return redirect(url_for('index'))
 
 @app.route('/delete/<int:task_id>')
