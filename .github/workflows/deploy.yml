@@ -1,3 +1,10 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Runs when code is pushed to main
+
 jobs:
   build:
     runs-on: ubuntu-latest
