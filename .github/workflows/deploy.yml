@@ -16,14 +16,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get upgrade -y
-          sudo apt-get install -f
-          sudo dpkg --configure -a
-          sudo apt-get autoremove -y
-          sudo apt-get clean
-          
+          sudo apt-get install -f  # Fix broken dependencies
+          sudo dpkg --configure -a  # Configure any uninstalled packages
+          sudo apt-get autoremove -y  # Remove unnecessary packages
+          sudo apt-get clean  # Clean cache files
+
           # Install Docker
           sudo apt-get install -y docker.io
-          
+
           # Install Docker Compose
           sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
@@ -32,6 +32,7 @@ jobs:
       - name: Deploy to Local Docker
         run: |
           docker-compose up -d
+
       - name: Notify Slack
         run: |
              curl -X POST -H 'Content-type: application/json' --data '{"text": "Test webhook notification from CI/CD"}' https://hooks.slack.com/services/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
