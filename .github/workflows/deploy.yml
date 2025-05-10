@@ -1,10 +1,3 @@
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,17 +5,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Docker & Docker Compose
+      - name: Fix package conflicts & install Docker Compose
         run: |
           sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install -f
+          sudo dpkg --configure -a
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          
+          # Install Docker
           sudo apt-get install -y docker.io
+          
+          # Install Docker Compose
           sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version  # Verify installation
 
-      - name: Run Docker Compose
+      - name: Deploy to Local Docker
         run: |
-          docker-compose up --build
+          docker-compose up -d
       - name: Notify Slack
         run: |
              curl -X POST -H 'Content-type: application/json' --data '{"text": "Test webhook notification from CI/CD"}' https://hooks.slack.com/services/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
