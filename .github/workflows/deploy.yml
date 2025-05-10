@@ -41,4 +41,4 @@ jobs:
           docker-compose up -d
       - name: Notify Slack
         run: |
-             curl -X POST -H 'Content-type: application/json' --data '{"text": "Test webhook notification from CI/CD"}' https://hooks.slack.com/services/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
+             curl -X POST -H 'Content-type: application/json' --data '{"text": "Test webhook notification from CI/CD"}' https://hooks.slack.com/services/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
